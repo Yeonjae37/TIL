@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/AMI.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/AMI.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/AMI.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md"
+                "file": "Deployment/AMI.md"
               }
             }
           }
@@ -185,8 +185,8 @@
   },
   "active": "2d37b62723901dff",
   "lastOpenFiles": [
-    "Deployment/스크린샷 2024-07-08 오후 5.00.41.png",
     "Deployment/AMI와 snapshot의 차이점.md",
+    "Deployment/스크린샷 2024-07-08 오후 5.00.41.png",
     "Deployment/AMI.md",
     "Deployment/스크린샷 2024-07-08 오후 9.19.28.png",
     "Deployment/Snapshot.md",
@@ -202,7 +202,6 @@
     "Untitled",
     "Deployment/스크린샷 2024-07-08 오후 7.33.09.png",
     "Deployment/스크린샷 2024-07-08 오후 5.41.17.png",
-    "Deployment/스크린샷 2024-07-08 오후 5.22.42.png",
     "Deployment",
     "AWS",
     "Spring/의존성_주입의_다양한_방법.md",
