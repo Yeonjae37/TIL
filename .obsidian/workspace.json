@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/EBS.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/EBS.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md",
+                "file": "Deployment/EBS.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Deployment/AMI와 snapshot의 차이점.md"
+                "file": "Deployment/EBS.md"
               }
             }
           }
@@ -185,8 +185,8 @@
   },
   "active": "2d37b62723901dff",
   "lastOpenFiles": [
-    "Deployment/AMI.md",
     "Deployment/AMI와 snapshot의 차이점.md",
+    "Deployment/AMI.md",
     "Deployment/스크린샷 2024-07-08 오후 5.00.41.png",
     "Deployment/스크린샷 2024-07-08 오후 9.19.28.png",
     "Deployment/Snapshot.md",
