@@ -1,4 +1,4 @@
-기본적으로 EBS를 백업.
+기본적으로 EBS를 백업
 
 AMI : EC2 인스턴스에 연결되어 있는 모든 EBS Volume을 동시에 백업
 Snapshot : 사용자가 선택한 EBS Volume 하나를 백업
