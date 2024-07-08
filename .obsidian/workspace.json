@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Deployment/EC2.md",
+                "file": "Deployment/Instance.md",
                 "mode": "source",
                 "source": false
               }
@@ -122,7 +122,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Deployment/EC2.md",
+                "file": "Deployment/Instance.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -139,7 +139,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Deployment/EC2.md",
+                "file": "Deployment/Instance.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -162,7 +162,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Deployment/EC2.md"
+                "file": "Deployment/Instance.md"
               }
             }
           }
@@ -185,12 +185,13 @@
   },
   "active": "2d37b62723901dff",
   "lastOpenFiles": [
+    "Deployment/Snapshot.md",
+    "Deployment/EC2.md",
     "Deployment/EBS.md",
     "Deployment/AMI와 snapshot의 차이점.md",
     "Deployment/AMI.md",
     "Deployment/스크린샷 2024-07-08 오후 5.00.41.png",
     "Deployment/스크린샷 2024-07-08 오후 9.19.28.png",
-    "Deployment/Snapshot.md",
     "Deployment/스크린샷 2024-07-08 오후 9.13.15.png",
     "Deployment/스크린샷 2024-07-08 오후 9.12.31.png",
     "Deployment/Instance.md",
@@ -198,7 +199,6 @@
     "Deployment/스크린샷 2024-07-08 오후 7.48.58.png",
     "Deployment/스크린샷 2024-07-08 오후 7.48.21.png",
     "Deployment/스크린샷 2024-07-08 오후 7.48.10.png",
-    "Deployment/EC2.md",
     "Untitled",
     "Deployment/스크린샷 2024-07-08 오후 7.33.09.png",
     "Deployment/스크린샷 2024-07-08 오후 5.41.17.png",
