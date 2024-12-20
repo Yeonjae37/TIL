@@ -1,13 +1,13 @@
 VPC : Virtual Private Cloud
 -> 물리적으로 같은 클라우드 상에 있지만, 보안상의 목적 등을 위해 논리적으로 다른 클라우드인것처럼 동작하도록 만든 가상 클라우드 환경
 - 사용자는 원하는대로 IP 주소 범위 선택, 서브넷 생성, 라우팅 테이블 및 네트워크 게이트웨이 구성 등 가상 네트워크 환경을 구성해 VPC를 생성할 수 있다.
-![[vpc1.png]]
+![vpc](../attachment/vpc1.png)
 -> VPC가 적용되지 않은 환경. 시스템이 복잡하고 인스턴스 하나만 추가해도 모든 인스턴스를 수정해야함
 
-![[vpc2.png]]
+![vpc](../attachment/vpc2.png)
 -> VPC가 적용된 환경. VPC별로 다른 네트워크 설정을 할 수 있음. 독립된 네트워크처럼 작동함
 
-![[vpc3.png]]
+![vpc](../attachment/vpc3.png)
 
 -> VPC가 Region에 상응하는 규모의 네트워크구나!
 -> VPC는 각 Region에 하나씩 종속!! 다른 Region에 걸쳐서 확장 불가능!
@@ -24,7 +24,7 @@ VPC : Virtual Private Cloud
 서브넷의 라우팅 테이블에 인터넷 게이트웨이가 등록되어있지 않으므로 해당 서브넷에 위치한 리소소들은 외부와의 연결이 불가능함.
 
 
-![[subnet.png]]
+![vpc](../attachment/vpc4.png)
 - VPC는 리전 하나에 종속, 각각의 VPC는 독립적
 - VPC를 잘게 쪼갠 게 서브넷
 - 서브넷 안에 RDS, EC2와 같은 리소스 위치
