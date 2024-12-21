@@ -51,7 +51,7 @@ BitTorrent에서처럼, Peer들은 본인이 얻고 싶은 파일블록(want_lis
 BitSwap Credit : 노드들이 peer에게 파일블록을 보내주면, 보낸 노드는 자산이 증가하며 받은 노드는 부채가 증가한다.
 평판이 쌓이는 구조이므로 받기만 하는 어뷰징을 막을 수 있고, 파일블록을 보유하고 보내주는 것에 인센티브가 생기게 된다.
 
-### (3) Git(merkle DAG) - version control systems
+### (3) Git(merkle DAG) - version control systems
 : IPFS는 네트워크 상에 존재하는 모든 파일을 Merkle DAG 형식으로 정리(organize)한다.
 
 **Merkle Tree란?**
@@ -69,7 +69,7 @@ BitSwap Credit : 노드들이 peer에게 파일블록을 보내주면, 보낸 �
 - Tamper resistance : 모든 컨텐츠는 자체적으로 checksum으로 무결성을 확인할 수 있고, 위변조시 merkle root의 hash 값이 변경되기 때문에 IPFS 자체적으로 감지할 수 있다.
 - Deduplication : 같은 컨텐츠는 같은 해시 값을 갖기 때문에, Merkle DAG 상에서 컨텐츠가 중복되지 않는다.
 
-### (4) SFS(Self-certified FileSystems)
+### (4)SFS(Self-certified FileSystems)
 **SFS란?**
 - IPFS의 name system인 IPNS를 시행하기 위한 기반 기술이다.
 - 주소는 /sfs/(Location):(HostID)의 형식으로 표현되며, 여기서 Location은 서버의 주소이다.
