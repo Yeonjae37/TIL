@@ -1,6 +1,6 @@
 ## AutoEncoder란?
 -----------
-![session](../attachment/autoencoder.png)
+![session](autoencoder.png)
 
 위 그림처럼 입력과 출력이 대응되는  직관적인 구조입니다. 
 그림을 그대로 따라가보겠습니다. 
