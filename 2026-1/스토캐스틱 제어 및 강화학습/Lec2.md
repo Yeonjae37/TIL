@@ -22,18 +22,18 @@ At each time step t:
 "All goals can be described by the maximization of expected cumulative rewards"
 
 ### Examples of Rewards
-1. Control of a drone
-	- + reward for following desired trajectory
-	- - reward for crashing
-2. Control of a humanoid robot to walk
-	- + reward for forward walking
-	- - reward for falling over
-3. Portfolio management
-	- + reward for earning money
-	- - reward for losing money
-4. (Computer) Games
-	- + reward for increasing score
-	- - reward for decreasing score
+- Control of a drone
+	- (+) reward for following desired trajectory
+	- (-) reward for crashing
+- Control of a humanoid robot to walk
+	- (+) reward for forward walking
+	- (-) reward for falling over
+- Portfolio management
+	- (+) reward for earning money
+	- (-) reward for losing money
+- (Computer) Games
+	- (+) reward for increasing score
+	- (-) reward for decreasing score
 
 ## Sequential Decision Making
 
