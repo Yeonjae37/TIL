@@ -92,7 +92,64 @@ We often use the following notation:
 - $v^\pi := (v^\pi(1),\ldots,v^\pi(n)) \in \mathbb R^n$
 	- 각 state의 value를 세로로 모은 벡터
 - $R^\pi := \left( \sum_{a\in A}\pi(a|1)r(1,a), \ldots, \sum_{a\in A}\pi(a|n)r(n,a) \right) \in \mathbb R^n$
-	- 각 state에서 policy $\pi$가 만드는 expected immediate reward.
-	- When $\pi$ is deterministic, it's simplified to
-	- $R^\pi := (r(1, \pi(1)), ..., r(n, \pi(n))) \in \mathbb{R}^n$
-- Transition probability matrix: 
+	각 state에서 policy $\pi$가 만드는 expected immediate reward.
+	When $\pi$ is deterministic, it's simplified to
+	$R^\pi := (r(1, \pi(1)), ..., r(n, \pi(n))) \in \mathbb{R}^n$
+- Transition probability matrix: $$P^\pi := \begin{bmatrix} \sum_{a\in A}\pi(a|1)p(1|1,a) & \cdots & \sum_{a\in A}\pi(a|1)p(n|1,a) \\ \vdots & \ddots & \vdots \\ \sum_{a\in A}\pi(a|n)p(1|n,a) & \cdots & \sum_{a\in A}\pi(a|n)p(n|n,a) \end{bmatrix} \in \mathbb{R}^{n\times n}$$
+	- 복잡해보이지만 $P^\pi(i,j) = \sum_{a\in A}\pi(a|i)p(j|i,a)$ 라고 보면 된다. 
+	- 현재 state가 $i$일 때, policy $\pi$를 따라 action을 고르면, 다음 state가 $j$가 될 전체 확률
+- Then, the policy evaluation equation can be expressed as
+	$v^\pi = R^\pi + \gamma P^\pi v^\pi$
+	- 왜? 
+	- scalar form은: $$v^\pi(s) = \sum_{a\in A}\pi(a|s) \left[ r(s,a) + \gamma \sum_{s'\in S}p(s'|s,a)v^\pi(s') \right]$$ 이었다. 이걸 각 state $s$ = 1, ..., n 에 대해 모두 쓰면 : $$v^\pi(1)=R^\pi(1)+\gamma\sum_{s'}P^\pi(1,s')v^\pi(s')$$ $$v^\pi(2)=R^\pi(2)+\gamma\sum_{s'}P^\pi(2,s')v^\pi(s')$$ $$v^\pi(n)=R^\pi(n)+\gamma\sum_{s'}P^\pi(n,s')v^\pi(s')$$
+	- 이걸 행렬식으로 한 번에 쓰면 : $v^\pi = R^\pi + \gamma P^\pi v^\pi$
+
+## Properties
+$v^\pi = R^\pi+\gamma P^\pi v^\pi$ 이 방정식이 왜 잘 풀리는가
+- The eigenvalues of $P^\pi$ are less than or equal to 1. Q) Why?
+	- $P^\pi$는 transition probability matrix임. 각 row는 현재 state 하나를 의미하고, 그 row의 원소들은 다음 state로 갈 확률들이다. 확률 transition matrix는 벡터를 곱했을 때 값을 무한히 폭발시키는 행렬이 아님. 그래서 eigenvalue의 크기가 1 이하가 된다.
+- The linear equation $v = R^\pi + \gamma P^\pi v$ has a unique solution. Q) Why?
+	- $v^\pi = R^\pi+\gamma P^\pi v^\pi$ 를 $v$에 대해 정리하면 $v-\gamma P^\pi v=R^\pi$ , $(I-\gamma P^\pi)v=R^\pi$ 
+	- 따라서 $v=(I-\gamma P^\pi)^{-1}R^\pi$가 된다. 여기서 중요한 건 $I - \gamma P^\pi$가 invertible(역행렬이 존재)이어야 한다는 것이다. 왜 invertible이냐? $P^\pi$의 eigenvalue 크기는 1 이하이다. $|\lambda (P^\pi)| \le 1$ 그리고 $0 \le \gamma < 1$ 이니까 $|\gamma \lambda(P^\pi)| < 1$ 이 됌.
+	- 즉 $\lambda P^\pi$의 eigenvalue들은 모두 크기가 1보다 작다. 그러면 $I - \lambda P^\pi$는 0 eigen value를 갖지 않는다. 그래서 inverse가 존재한다. 따라서 solution이 하나로 정해진다. 이게 unique solution
+- The unique solution is given by $$v^\pi = (I-\gamma P^\pi)^{-1}R^\pi = \sum_{t=0}^{\infty}(\gamma P^\pi)^tR^\pi$$
+- This method is inefficient for large-scale problems.
+	- state 수 $n$이 크면 $P^\pi$는 $n \times n$ matrix이다. 예를 들어 state가 1,000,000개면 행렬의 inverse를 직접 구하는 건 거의 불가능하거나 매우 비효율적이다. 그래서 실제 큰 문제에서는 inverse를 직접 계산하지 않고 value iteration 같은 반복 알고리즘을 사용한다.
+
+## Operator Form
+- Let $T^\pi:\mathbb R^n\to \mathbb R^n$ be defined by
+$$T^\pi v := R^\pi+\gamma P^\pi v$$
+어떤 임의의 vector $v$를 넣으면, $R^\pi + \gamma P^\pi v$ 를 계산해서 새로운 vector를 반환한다.
+- Thus, $$(T^\pi v)(s) = \sum_{a\in A}\pi(a|s) \left[ r(s,a) + \gamma \sum_{s'\in S}p(s'|s,a)v(s') \right]$$
+- The policy evaluation equation can be expressed as $$v^\pi=T^\pi v^\pi$$
+ or $$v^\pi(s)=(T^\pi v^\pi)(s)$$
+ which is a fixed point problem.
+	 - Fixed point problem이란?
+	 -  어떤 함수 $F$가 있을 때, $x = F(x)$를 만족하는 $x$를 fixed point라고 함. $x$를 넣어도 값이 변하지 않기 때문
+	 - 우리 문제에서는 함수가 $T^\pi$이고 찾는 값은 $v^\pi$이다. 즉 $v^\pi = T^\pi v^\pi$를 만족하는 value vector를 찾는 문제
+	 - $T^\pi$로 한 번 업데이트해도 변하지 않는 value vector가 $v^\pi$다.
+
+## Contraction Property
+- $T^\pi$는 value vector들을 점점 서로 가깝게 만드는 함수이다.
+![[contraction_property.png|525]]
+- 두 벡터 $v, v'$가 있을 때, $T$를 한 번 적용하면 두 벡터 사이의 거리가 줄어든다. 이런 함수를 contraction이라고 한다.
+- $T^\pi$를 한 번 적용하면 value vector들 사이의 거리가 $\gamma$배 이하로 줄어든다.
+- $\|v\|_\infty$ 는 vector 안의 값들 중 절대값이 가장 큰 값
+
+Q) Why?
+
+## Banach Fixed Point Theorem
+![[fixed_point.png|525]]
+
+어떤 operator $T$가 contraction이면, fixed point가 딱 하나 존재하고, 아무 초기값에서 시작해서 $T$를 반복 적용하면 그 fixed point로 수렴한다.
+$v^* = Tv^*$를 만족하는 $v^*$가 유일하게 존재하고, $v_(k+1) = T_{v_k}$로 반복하면 $v_k \rightarrow v^*$ 가 된다는 말
+Remark:
+- Our policy evaluation equation has a unique solution.
+- $v^\pi$ can be obtained by value iteration.
+
+## Value Iteration Algorithm for Policy Evaluation
+Input: stationary policy $\pi$
+- Initialize $v_0$ as an arbitary vector in $\mathbb{R}^n;$
+- Repeat until convergence
+	$v_k+1 := T^\pi_{v_k};$ 
+	
