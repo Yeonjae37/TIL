@@ -134,7 +134,10 @@ $$T^\pi v := R^\pi+\gamma P^\pi v$$
 ![[contraction_property.png|525]]
 - 두 벡터 $v, v'$가 있을 때, $T$를 한 번 적용하면 두 벡터 사이의 거리가 줄어든다. 이런 함수를 contraction이라고 한다.
 - $T^\pi$를 한 번 적용하면 value vector들 사이의 거리가 $\gamma$배 이하로 줄어든다.
-- $\|v\|_\infty$ 는 vector 안의 값들 중 절대값이 가장 큰 값
+- 어떤 stationary policy $\pi$에 대해서도, operator $T^\pi$는 $||\cdot||_\infty$ 기준으로 $\gamma - contraction$이다.
+	-  $\gamma - contraction$ : 다음 부등식 $\|T^\pi v-T^\pi v'\|_\infty \le \gamma \|v-v'\|_\infty$을 만족한다는 뜻
+	- $\|v\|_\infty$ 는 vector 안의 값들 중 절대값이 가장 큰 값
+	- $T^\pi$라는 업데이트 함수는, value vector들 사이의 거리를 $||\cdot||_\infty$라는 방식으로 측정했을 때, 그 거리를 최대 $\gamma$배로 줄이는 함수다.
 
 Q) Why?
 
@@ -143,6 +146,7 @@ Q) Why?
 
 어떤 operator $T$가 contraction이면, fixed point가 딱 하나 존재하고, 아무 초기값에서 시작해서 $T$를 반복 적용하면 그 fixed point로 수렴한다.
 $v^* = Tv^*$를 만족하는 $v^*$가 유일하게 존재하고, $v_(k+1) = T_{v_k}$로 반복하면 $v_k \rightarrow v^*$ 가 된다는 말
+$v^\pi$는 이미 policy $\pi$의 정확한 value이기 때문에, Bellman update를 한 번 더 해도 변하지 않는다.
 Remark:
 - Our policy evaluation equation has a unique solution.
 - $v^\pi$ can be obtained by value iteration.
