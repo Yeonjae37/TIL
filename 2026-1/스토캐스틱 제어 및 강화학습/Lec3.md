@@ -1,3 +1,4 @@
+# Markov Decition Processes
 ## Example: Two-State MDP
 ### Setting
 - State set: $S = \{s_1, s_2\}$
@@ -83,6 +84,9 @@ $$v^*(s) := max_{\pi \in \Pi} v^{\pi}(s)$$
 
 ![[DP.png]]
 
+- In operator form:
+		$v^* = \tau v^*$
+
 앞에서 배운 것들을 정리하면, 흐름은
 **MDP를 푼다 = Optimal policy $\pi^*$을 찾는다**
 그런데 optimal policy를 바로 찾는 대신 먼저 optimal value function $v^*(s)$를 찾을 수 있음.
@@ -90,7 +94,7 @@ $$v^*(s) := max_{\pi \in \Pi} v^{\pi}(s)$$
 
 value function, optimal policy, optimal value function이 헷갈릴 때...
 **value function $v^\pi$** = policy $\pi$가 고정되었을 때, 각 state에서 시작하여 그 policy를 계속 따를 경우 얻는 expected discounted return.
-**optimal value function $v^*(s)$** = 모든 가능한 policy 중에 가장 큰 value를 주는 함수
+**optimal value function $v^*$** = 모든 state $s$에 대해, 그 state에서 최적으로 행동했을 때 얻을 수 있는 최대 기대 누적 보상을 알려주는 함수. state space가 $S = {s_1, s_2, s_3}$ 라면, $v^*$는 $v^*(s_1) = 10, v^*(S_2) = 5, v^*(s_3) = -2$ 이 세 개를 모두 포함한 전체 함수가 $v^*$이다.
 **optimal policy $\pi^*$** = 모든 state에서 optimal value를 달성하는 policy. 각 state에서의 return을 동시에 최대로 만드는 정책
 
 $$ v^*(s) = \max_{a_t\in A} \mathbb E \left[ r(s_t,a_t) + \gamma v^*(s_{t+1}) \mid s_t=s \right] $$
@@ -101,6 +105,12 @@ $$ v^*(s) = \max_{a\in A} \left( r(s,a) + \gamma \sum_{s'\in S} p(s'|s,a)v^*(s')
 
 $\sum_{s'\in S}p(s'|s,a)v^*(s')$  $\rightarrow$ action $a$를 했을 때 가능한 모든 next state $s'$에 대해  **갈 확률 x next state s'의 optimal value** 를 더한 것. 즉 next state value의 기대값
 
+Bellman equation을 직관적으로 보면, 현재 state $s$에서 가장 잘하기 위해서는
+1. action $a$를 하나 고르고,
+2. 그 action으로 지금 reward를 받고,
+3. 다음 state $s'$로 가고,
+4. 거기서부터는 다시 최적으로 행동한다.
+를 수식으로 쓴 게 Bellman optimality equation이다.
 ### Policy evalution과 비교
 
 **policy evaluation :** $$ v^\pi(s) = \sum_a \pi(a|s) \left( r(s,a) + \gamma \sum_{s'}p(s'|s,a)v^\pi(s') \right) $$
@@ -109,11 +119,20 @@ $\sum_{s'\in S}p(s'|s,a)v^*(s')$  $\rightarrow$ action $a$를 했을 때 가능�
 
 **Bellman optimality equation : **
 $$ v^*(s) = \max_a \left( r(s,a) + \gamma \sum_{s'}p(s'|s,a)v^*(s') \right) $$
-여기서는 policy가 
+여기서는 policy가 주어져있지 않다. 대신 가장 좋은 action을 고르는 것
 
+#### 근데 왜 이게 Dynamic Programming인가?
+Dynamic Programming의 핵심은: 큰 문제를 작은 문제로 나눠 푼다.
+여기서 큰 문제는 : state $s$에서 시작해서 무한한 미래 동안 최적으로 행동했을 때의 value를 구하라.
+이 큰 문제를 Bellman equation은 
+"현재 state의 최적 가치 = 지금 한 step의 reward + 다음 state의 최적 가치"
+무한히 긴 미래 문제를 "현재 1 step + 나머지 미래 문제"로 쪼개기 때문이다.
 
-classify : input - image, output - text
-image, 판독문 input 2개가 들어가고
-원래 그렇게 하려고 생각했는데, mimic cxr이 데이터 특성 때문에 
-중요한 건 
-input으로 indication을 넣어줘서.. 성능을 조금만 높여줘도 프로젝트가 될 것 같다
+### Optimal Policy
+Define a deterministic Markov policy $\pi^*$ by
+$$\pi^*(s) \in \arg\max_{a\in A} \left( r(s,a) + \gamma \sum_{s'\in S} p(s'|s,a)v^*(s') \right) \quad \forall s\in S $$
+모든 state $s$에 대해, 현재 reward와 다음 state들의 optimal value를 합친 값이 가장 커지는 action $a$를 선택하는 policy를 $\pi^*$라고 하자.
+
+- Then, it is an optimal policy, i.e.,
+		$v^{\pi^*} = v^*$. 
+		- 이 방식으로 만든 policy $\pi^*$를 따르면, 그 policy의 value function이 optimal value function과 같아진다.
